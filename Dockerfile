@@ -1,10 +1,19 @@
-pnpm install
+# specify the node base image with your desired version node:<version>
+FROM node:18-alpine
 
-pnpm dev
+ARG NODE_ENV=production
+RUN pnpm install
+WORKDIR /usr/src/app
 
-pnpm build
+COPY . .
 
-pnpm start
+RUN npm ci
+RUN pnpm dev
+EXPOSE 3000
+RUN pnpm build
+# Start cron service and your application
+CMD pnpm start
+
 
 
 
