@@ -1,10 +1,10 @@
-run pnpm install
+pnpm install
 
-run pnpm dev
+pnpm dev
 
-run pnpm build
+pnpm build
 
-run pnpm start
+pnpm start
 
 
 
