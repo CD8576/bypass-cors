@@ -1,7 +1,7 @@
 FROM node:20-slim AS base
 RUN corepack enable
 WORKDIR /app
-RUN pnpm install
-RUN pnpm build
+RUN npm install
+RUN npm build
 
-CMD [ "pnpm", "start" ]
+CMD npm start
