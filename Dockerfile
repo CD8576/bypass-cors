@@ -8,9 +8,9 @@ WORKDIR /usr/src/app
 
 COPY . .
 
-RUN npm build
+RUN pnpm build
 
 EXPOSE 3000
 
 # Start cron service and your application
-CMD npm start
+CMD pnpm start
