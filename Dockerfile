@@ -1,6 +1,3 @@
-run corepack enable
-run corepack use pnpm@*
-
 run pnpm install
 
 run pnpm dev
