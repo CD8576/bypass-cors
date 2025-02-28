@@ -1,14 +1,20 @@
-# specify the node base image with your desired version node:<version>
-FROM node:18-alpine
+FROM node:20-slim AS base
 
-ARG NODE_ENV=production
+ENV PNPM_HOME="/pnpm"
+ENV PATH="$PNPM_HOME:$PATH"
+RUN corepack enable
 
-WORKDIR /usr/src/app
+FROM base AS prod
 
+COPY pnpm-lock.yaml /app
+WORKDIR /app
+RUN pnpm fetch --prod
 
-COPY . .
-RUN pnpm install
-RUN pnpm build
+COPY . /app
+RUN pnpm run build
 
-# Start cron service and your application
-CMD pnpm start
+FROM base
+COPY --from=prod /app/node_modules /app/node_modules
+COPY --from=prod /app/dist /app/dist
+EXPOSE 8000
+CMD [ "pnpm", "start" ]
