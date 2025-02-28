@@ -6,6 +6,7 @@ RUN npm install --global corepack@latest
 RUN corepack enable pnpm
 RUN corepack use pnpm@latest-10
 
+RUN pnpm dev
 RUN pnpm build
 
 EXPOSE 8000
