@@ -2,7 +2,7 @@
 FROM node:18-alpine
 
 ARG NODE_ENV=production
-RUN pnpm install
+RUN npm pnpm install 
 WORKDIR /usr/src/app
 
 COPY . .
